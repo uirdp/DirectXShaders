@@ -6,8 +6,8 @@ class RootSignature
 {
 public:
 	RootSignature();
-	bool IsValid() const;
-	ID3D12RootSignature* Get() const;
+	bool IsValid();
+	ID3D12RootSignature* Get();
 
 private:
 	bool m_IsValid = false;

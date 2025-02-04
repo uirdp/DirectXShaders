@@ -5,6 +5,7 @@
 #include "SharedStruct.h"
 #include "VertexBuffer.h"
 #include "ConstantBuffer.h"
+#include "RootSignature.h"
 
 Scene* g_Scene;
 
@@ -12,6 +13,7 @@ using namespace DirectX;
 
 VertexBuffer* vertexBuffer;
 ConstantBuffer* constantBuffer[Engine::FRAME_BUFFER_COUNT];
+RootSignature* rootSignature;
 
 bool Scene::Init()
 {
@@ -57,6 +59,14 @@ bool Scene::Init()
 		ptr->View = XMMatrixLookAtLH(eyePos, targetPos, upward);
 		ptr->Projection = XMMatrixPerspectiveFovLH(fov, aspect, 0.3f, 1000.0f);
 	}
+
+	rootSignature = new RootSignature();
+	if (!rootSignature->IsValid())
+	{
+		printf("ルートシグネチャの生成に失敗\n");
+		return false;
+	}
+
 	printf("シーンの初期化に成功\n");
 	return true;
 }

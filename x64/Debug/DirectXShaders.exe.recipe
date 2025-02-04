@@ -5,7 +5,14 @@
       <FullPath>C:\Users\haumu\source\repos\DirectXShaders\x64\Debug\DirectXShaders.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
-  <ContentFiles />
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>C:\Users\haumu\source\repos\DirectXShaders\x64\Debug\SamplePS.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\haumu\source\repos\DirectXShaders\x64\Debug\SampleVS.cso</FullPath>
+    </ContentFile>
+  </ContentFiles>
   <SatelliteDlls />
   <NonRecipeFileRefs />
 </Project>
