@@ -4,12 +4,14 @@
 #include <d3dx12.h>
 #include "SharedStruct.h"
 #include "VertexBuffer.h"
+#include "ConstantBuffer.h"
 
 Scene* g_Scene;
 
 using namespace DirectX;
 
 VertexBuffer* vertexBuffer;
+ConstantBuffer* constantBuffer[Engine::FRAME_BUFFER_COUNT];
 
 bool Scene::Init()
 {
@@ -34,6 +36,26 @@ bool Scene::Init()
 		return false;
 	}
 
+	auto eyePos = XMVectorSet(0.0f, 0.0f, 5.0f, 0.0f);
+	auto targetPos = XMVectorZero();
+	auto upward = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+	auto fov = XMConvertToRadians(37.5f);
+	auto aspect = static_cast<float>(WINDOW_WIDTH) / WINDOW_HEIGHT;
+
+	for (size_t i = 0; i < Engine::FRAME_BUFFER_COUNT; i++)
+	{
+		constantBuffer[i] = new ConstantBuffer(sizeof(Transform));
+		if (!constantBuffer[i]->IsValid())
+		{
+			printf("定数バッファの生成に失敗\n");
+			return false;
+		}
+
+		auto ptr = constantBuffer[i]->GetPtr<Transform>();
+		ptr->World = XMMatrixIdentity();
+		ptr->View = XMMatrixLookAtLH(eyePos, targetPos, upward);
+		ptr->Projection = XMMatrixPerspectiveFovLH(fov, aspect, 0.3f, 1000.0f);
+	}
 	printf("シーンの初期化に成功\n");
 	return true;
 }

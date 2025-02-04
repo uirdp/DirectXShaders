@@ -11,3 +11,10 @@ struct Vertex
 	DirectX::XMFLOAT3 Tangent;
 	DirectX::XMFLOAT4 Color;
 };
+
+struct alignas(256) Transform
+{
+	DirectX::XMMATRIX World;
+	DirectX::XMMATRIX View;
+	DirectX::XMMATRIX Projection;
+};
