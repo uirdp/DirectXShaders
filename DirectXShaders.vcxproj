@@ -20,15 +20,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\App.cpp" />
+    <ClCompile Include="src\ConstantBuffer.cpp" />
     <ClCompile Include="src\Engine.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\RootSignature.cpp" />
     <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\App.h" />
     <ClInclude Include="src\ComPtr.h" />
+    <ClInclude Include="src\ConstantBuffer.h" />
     <ClInclude Include="src\Engine.h" />
+    <ClInclude Include="src\RootSignature.h" />
     <ClInclude Include="src\Scene.h" />
     <ClInclude Include="src\SharedStruct.h" />
     <ClInclude Include="src\VertexBuffer.h" />

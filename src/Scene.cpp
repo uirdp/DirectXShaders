@@ -51,6 +51,7 @@ bool Scene::Init()
 			return false;
 		}
 
+		// map‚³‚ê‚Ä‚¢‚é
 		auto ptr = constantBuffer[i]->GetPtr<Transform>();
 		ptr->World = XMMatrixIdentity();
 		ptr->View = XMMatrixLookAtLH(eyePos, targetPos, upward);

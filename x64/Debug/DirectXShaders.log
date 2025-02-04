@@ -1,2 +1,5 @@
-﻿  VertexBuffer.cpp
+﻿  ConstantBuffer.cpp
+  RootSignature.cpp
+  Scene.cpp
+  コードを生成中...
   DirectXShaders.vcxproj -> C:\Users\haumu\source\repos\DirectXShaders\x64\Debug\DirectXShaders.exe
