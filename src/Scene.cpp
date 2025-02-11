@@ -4,6 +4,7 @@
 #include <d3dx12.h>
 #include "SharedStruct.h"
 #include "VertexBuffer.h"
+#include "IndexBuffer.h"
 #include "ConstantBuffer.h"
 #include "RootSignature.h"
 #include "PipelineState.h"
@@ -13,21 +14,25 @@ Scene* g_Scene;
 using namespace DirectX;
 
 VertexBuffer* vertexBuffer;
+IndexBuffer* indexBuffer;
 ConstantBuffer* constantBuffer[Engine::FRAME_BUFFER_COUNT];
 RootSignature* rootSignature;
 PipelineState* pipelineState;
 
 bool Scene::Init()
 {
-	Vertex vertices[3] = {};
-	vertices[0].Position = XMFLOAT3(-1.0f, -1.0f, 0.0f);
-	vertices[0].Color = XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f);
+	Vertex vertices[4] = {};
+	vertices[0].Position = XMFLOAT3(-1.0f, 1.0f, 0.0f);
+	vertices[0].Color = XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
 
-	vertices[1].Position = XMFLOAT3(1.0f, -1.0f, 0.0f);
+	vertices[1].Position = XMFLOAT3(1.0f, 1.0f, 0.0f);
 	vertices[1].Color = XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f);
 
-	vertices[2].Position = XMFLOAT3(0.0f, 1.0f, 0.0f);
-	vertices[2].Color = XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
+	vertices[2].Position = XMFLOAT3(1.0f, -1.0f, 0.0f);
+	vertices[2].Color = XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f);
+
+	vertices[3].Position = XMFLOAT3(-1.0f, -1.0f, 0.0f);
+	vertices[3].Color = XMFLOAT4(1.0f, 0.0f, 1.0f, 1.0f);
 
 	auto vertexSize = sizeof(Vertex) * std::size(vertices);
 	auto vertexStride = sizeof(Vertex);
@@ -37,6 +42,17 @@ bool Scene::Init()
 	if (!vertexBuffer->IsValid())
 	{
 		printf("頂点バッファの生成に失敗\n");
+		return false;
+	}
+
+	uint32_t indices[6] = { 0, 1, 2, 0, 2, 3 };
+
+	auto size = sizeof(uint32_t) * std::size(indices);
+	indexBuffer = new IndexBuffer(size, indices);
+
+	if (!indexBuffer->IsValid())
+	{
+		printf("インデックスバッファの生成に失敗\n");
 		return false;
 	}
 
@@ -85,8 +101,14 @@ bool Scene::Init()
 	return true;
 }
 
+
+float rotateY = 0.0f;
 void Scene::Update()
 {
+	rotateY += 0.02f;
+	auto currentIndex = g_Engine->CurrentBackBufferIndex();
+	auto currentTransform = constantBuffer[currentIndex]->GetPtr<Transform>();
+	currentTransform->World = XMMatrixRotationY(rotateY);
 }
 
 void Scene::Draw()
@@ -94,6 +116,7 @@ void Scene::Draw()
 	auto currentIndex = g_Engine->CurrentBackBufferIndex();
 	auto commandList = g_Engine->CommandList();
 	auto vbView = vertexBuffer->View();
+	auto ibView = indexBuffer->View();
 
 	commandList->SetGraphicsRootSignature(rootSignature->Get());
 	commandList->SetPipelineState(pipelineState->Get());
@@ -102,6 +125,7 @@ void Scene::Draw()
 
 	commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	commandList->IASetVertexBuffers(0, 1, &vbView);
+	commandList->IASetIndexBuffer(&ibView);
 
-	commandList->DrawInstanced(3, 1, 0, 0);
+	commandList->DrawIndexedInstanced(6, 1, 0, 0, 0);
 }
