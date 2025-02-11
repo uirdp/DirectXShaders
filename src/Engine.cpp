@@ -285,6 +285,10 @@ bool Engine::CreateDepthStencil()
 		return false;
 	}
 
+	D3D12_CPU_DESCRIPTOR_HANDLE dsvHandle = m_pDsvHeap->GetCPUDescriptorHandleForHeapStart();
+
+	m_pDevice->CreateDepthStencilView(m_pDepthStencilBuffer.Get(), nullptr, dsvHandle);
+
 	return true;
 }
 
@@ -311,7 +315,7 @@ void Engine::BeginRender()
 
 	m_pCommandList->OMSetRenderTargets(1, &currentRtvHandle, FALSE, &currentDsvHandle);
 
-	const float clearColor[] = { 0.25f, 0.25f, 0.25f, 1.0f };
+	const float clearColor[] = { 0.25f, 0.5f, 0.25f, 1.0f };
 	m_pCommandList->ClearRenderTargetView(currentRtvHandle, clearColor, 0, nullptr);
 
 	m_pCommandList->ClearDepthStencilView(currentDsvHandle, D3D12_CLEAR_FLAG_DEPTH, 1.0f, 0, 0, nullptr);

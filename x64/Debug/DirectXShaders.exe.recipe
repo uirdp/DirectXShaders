@@ -2,15 +2,15 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\haumu\source\repos\DirectXShaders\x64\Debug\DirectXShaders.exe</FullPath>
+      <FullPath>D:\dev\cg\shader\Shaders\DirectXShaders\x64\Debug\DirectXShaders.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles>
     <ContentFile>
-      <FullPath>C:\Users\haumu\source\repos\DirectXShaders\x64\Debug\SamplePS.cso</FullPath>
+      <FullPath>D:\dev\cg\shader\Shaders\DirectXShaders\x64\Debug\SamplePS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\haumu\source\repos\DirectXShaders\x64\Debug\SampleVS.cso</FullPath>
+      <FullPath>D:\dev\cg\shader\Shaders\DirectXShaders\x64\Debug\SampleVS.cso</FullPath>
     </ContentFile>
   </ContentFiles>
   <SatelliteDlls />

@@ -25,9 +25,9 @@ VSOutput vert(VSInput input)
     VSOutput output;
     
     float4 localPos = float4(input.pos, 1.0f);
-    float4 worldPos = mul(localPos, World);
-    float4 viewPos = mul(worldPos, View);
-    float4 projPos = mul(viewPos, Proj);
+    float4 worldPos = mul(World, localPos);
+    float4 viewPos = mul(View, worldPos);
+    float4 projPos = mul(Proj, viewPos);
     
     output.svpos = projPos;
     output.color = input.color;

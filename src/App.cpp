@@ -55,8 +55,20 @@ void InitWindow(const TCHAR* appName)
 	SetFocus(g_hWnd);
 }
 
+void EnableDebugLayer()
+{
+	ComPtr<ID3D12Debug> debugLayer;
+	if (SUCCEEDED(D3D12GetDebugInterface(IID_PPV_ARGS(debugLayer.GetAddressOf()))))
+	{
+		debugLayer->EnableDebugLayer();
+		debugLayer->Release();
+	}
+
+}
+
 void MainLoop()
 {
+
 	MSG msg = {};
 	while (msg.message != WM_QUIT)
 	{
@@ -78,6 +90,10 @@ void MainLoop()
 void StartApp(const TCHAR* appName)
 {
 	InitWindow(appName);
+
+#ifdef _DEBUG
+	EnableDebugLayer();
+#endif
 
 	g_Engine = new Engine();
 	if (!g_Engine->Init(g_hWnd, WINDOW_WIDTH, WINDOW_HEIGHT))

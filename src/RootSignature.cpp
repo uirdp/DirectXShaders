@@ -2,6 +2,7 @@
 #include "Engine.h"
 #include <d3dx12.h>
 
+// パイプラインにバインドされるリソースの種類を定義
 RootSignature::RootSignature()
 {
 	auto flag = D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT; // アプリケーションの入力アセンブラを使用する

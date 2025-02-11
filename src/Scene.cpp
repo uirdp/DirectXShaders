@@ -6,6 +6,7 @@
 #include "VertexBuffer.h"
 #include "ConstantBuffer.h"
 #include "RootSignature.h"
+#include "PipelineState.h"
 
 Scene* g_Scene;
 
@@ -14,6 +15,7 @@ using namespace DirectX;
 VertexBuffer* vertexBuffer;
 ConstantBuffer* constantBuffer[Engine::FRAME_BUFFER_COUNT];
 RootSignature* rootSignature;
+PipelineState* pipelineState;
 
 bool Scene::Init()
 {
@@ -42,7 +44,7 @@ bool Scene::Init()
 	auto targetPos = XMVectorZero();
 	auto upward = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 	auto fov = XMConvertToRadians(37.5f);
-	auto aspect = static_cast<float>(WINDOW_WIDTH) / WINDOW_HEIGHT;
+	auto aspect = static_cast<float>(WINDOW_WIDTH) / static_cast<float>(WINDOW_HEIGHT);
 
 	for (size_t i = 0; i < Engine::FRAME_BUFFER_COUNT; i++)
 	{
@@ -56,14 +58,26 @@ bool Scene::Init()
 		// mapされている
 		auto ptr = constantBuffer[i]->GetPtr<Transform>();
 		ptr->World = XMMatrixIdentity();
-		ptr->View = XMMatrixLookAtLH(eyePos, targetPos, upward);
-		ptr->Projection = XMMatrixPerspectiveFovLH(fov, aspect, 0.3f, 1000.0f);
+		ptr->View = XMMatrixLookAtRH(eyePos, targetPos, upward);
+		ptr->Projection = XMMatrixPerspectiveFovRH(fov, aspect, 0.3f, 1000.0f);
 	}
 
 	rootSignature = new RootSignature();
 	if (!rootSignature->IsValid())
 	{
 		printf("ルートシグネチャの生成に失敗\n");
+		return false;
+	}
+
+	pipelineState = new PipelineState();
+	pipelineState->SetInputLayout(Vertex::InputLayout);
+	pipelineState->SetRootSignature(rootSignature->Get());
+	pipelineState->SetVertexShader(L"../x64/Debug/SampleVS.cso");
+	pipelineState->SetPixelShader(L"../x64/Debug/SamplePS.cso");
+	pipelineState->Create();
+	if (!pipelineState->IsValid())
+	{
+		printf("パイプラインステートの生成に失敗\n");
 		return false;
 	}
 
@@ -77,4 +91,17 @@ void Scene::Update()
 
 void Scene::Draw()
 {
+	auto currentIndex = g_Engine->CurrentBackBufferIndex();
+	auto commandList = g_Engine->CommandList();
+	auto vbView = vertexBuffer->View();
+
+	commandList->SetGraphicsRootSignature(rootSignature->Get());
+	commandList->SetPipelineState(pipelineState->Get());
+	// slot0にバインドされる
+	commandList->SetGraphicsRootConstantBufferView(0, constantBuffer[currentIndex]->GetAddress());
+
+	commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	commandList->IASetVertexBuffers(0, 1, &vbView);
+
+	commandList->DrawInstanced(3, 1, 0, 0);
 }

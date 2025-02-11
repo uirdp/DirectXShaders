@@ -1,7 +1,9 @@
-C:\Users\haumu\source\repos\DirectXShaders\DirectXShaders\src\App.cpp;C:\Users\haumu\source\repos\DirectXShaders\DirectXShaders\x64\Debug\App.obj
-C:\Users\haumu\source\repos\DirectXShaders\DirectXShaders\src\ConstantBuffer.cpp;C:\Users\haumu\source\repos\DirectXShaders\DirectXShaders\x64\Debug\ConstantBuffer.obj
-C:\Users\haumu\source\repos\DirectXShaders\DirectXShaders\src\Engine.cpp;C:\Users\haumu\source\repos\DirectXShaders\DirectXShaders\x64\Debug\Engine.obj
-C:\Users\haumu\source\repos\DirectXShaders\DirectXShaders\src\main.cpp;C:\Users\haumu\source\repos\DirectXShaders\DirectXShaders\x64\Debug\main.obj
-C:\Users\haumu\source\repos\DirectXShaders\DirectXShaders\src\RootSignature.cpp;C:\Users\haumu\source\repos\DirectXShaders\DirectXShaders\x64\Debug\RootSignature.obj
-C:\Users\haumu\source\repos\DirectXShaders\DirectXShaders\src\Scene.cpp;C:\Users\haumu\source\repos\DirectXShaders\DirectXShaders\x64\Debug\Scene.obj
-C:\Users\haumu\source\repos\DirectXShaders\DirectXShaders\src\VertexBuffer.cpp;C:\Users\haumu\source\repos\DirectXShaders\DirectXShaders\x64\Debug\VertexBuffer.obj
+D:\dev\cg\shader\Shaders\DirectXShaders\DirectXShaders\src\App.cpp;D:\dev\cg\shader\Shaders\DirectXShaders\DirectXShaders\x64\Debug\App.obj
+D:\dev\cg\shader\Shaders\DirectXShaders\DirectXShaders\src\ConstantBuffer.cpp;D:\dev\cg\shader\Shaders\DirectXShaders\DirectXShaders\x64\Debug\ConstantBuffer.obj
+D:\dev\cg\shader\Shaders\DirectXShaders\DirectXShaders\src\Engine.cpp;D:\dev\cg\shader\Shaders\DirectXShaders\DirectXShaders\x64\Debug\Engine.obj
+D:\dev\cg\shader\Shaders\DirectXShaders\DirectXShaders\src\main.cpp;D:\dev\cg\shader\Shaders\DirectXShaders\DirectXShaders\x64\Debug\main.obj
+D:\dev\cg\shader\Shaders\DirectXShaders\DirectXShaders\src\PipelineState.cpp;D:\dev\cg\shader\Shaders\DirectXShaders\DirectXShaders\x64\Debug\PipelineState.obj
+D:\dev\cg\shader\Shaders\DirectXShaders\DirectXShaders\src\RootSignature.cpp;D:\dev\cg\shader\Shaders\DirectXShaders\DirectXShaders\x64\Debug\RootSignature.obj
+D:\dev\cg\shader\Shaders\DirectXShaders\DirectXShaders\src\Scene.cpp;D:\dev\cg\shader\Shaders\DirectXShaders\DirectXShaders\x64\Debug\Scene.obj
+D:\dev\cg\shader\Shaders\DirectXShaders\DirectXShaders\src\SharedStruct.cpp;D:\dev\cg\shader\Shaders\DirectXShaders\DirectXShaders\x64\Debug\SharedStruct.obj
+D:\dev\cg\shader\Shaders\DirectXShaders\DirectXShaders\src\VertexBuffer.cpp;D:\dev\cg\shader\Shaders\DirectXShaders\DirectXShaders\x64\Debug\VertexBuffer.obj

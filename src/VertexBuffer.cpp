@@ -26,7 +26,7 @@ VertexBuffer::VertexBuffer(size_t size, size_t stride, const void* pInitData)
 	m_View.SizeInBytes = static_cast<UINT>(size);
 	m_View.StrideInBytes = static_cast<UINT>(stride);
 
-	if(pInitData)
+	if(pInitData != nullptr)
 	{
 		void* p;
 		hr = m_pBuffer->Map(0, nullptr, &p);
