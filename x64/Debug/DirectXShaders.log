@@ -1,2 +1,15 @@
-﻿  Scene.cpp
+﻿  compilation object save succeeded; see D:\dev\cg\shader\Shaders\DirectXShaders\x64\Debug\SamplePS.cso
+  compilation object save succeeded; see D:\dev\cg\shader\Shaders\DirectXShaders\x64\Debug\SampleVS.cso
+  App.cpp
+  AssimpLoader.cpp
+  ConstantBuffer.cpp
+  Engine.cpp
+  IndexBuffer.cpp
+  main.cpp
+  PipelineState.cpp
+  RootSignature.cpp
+  Scene.cpp
+  SharedStruct.cpp
+  VertexBuffer.cpp
+  コードを生成中...
   DirectXShaders.vcxproj -> D:\dev\cg\shader\Shaders\DirectXShaders\x64\Debug\DirectXShaders.exe

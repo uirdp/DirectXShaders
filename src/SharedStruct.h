@@ -24,3 +24,12 @@ struct alignas(256) Transform
 	DirectX::XMMATRIX View;
 	DirectX::XMMATRIX Projection;
 };
+
+struct Mesh
+{
+	std::vector<Vertex> Vertices;
+	std::vector<uint32_t> Indices;
+	std::wstring DiffuseMapPath;
+};
+
+
